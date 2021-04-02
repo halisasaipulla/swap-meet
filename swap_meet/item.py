@@ -3,10 +3,10 @@ class Item:
       def __init__(self, category="",condition=0):
             self.category = category
             self.condition = condition
-
+      #wave3 first test
       def __str__(self):
             return "Hello World!"
-
+      #wave5  
       def condition_description(self):
             # return ""
             condition_description = ""
@@ -29,6 +29,7 @@ class Item:
             return condition_description
 
 
-                  
+     
+
 
 
