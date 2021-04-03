@@ -1,5 +1,5 @@
-
 class Item:
+      
       def __init__(self, category="",condition=0):
             self.category = category
             self.condition = condition
@@ -8,28 +8,21 @@ class Item:
             return "Hello World!"
       #wave5  
       def condition_description(self):
-            # return ""
-            condition_description = ""
-            # for self.condition in range(5):
-                  # print(self.condition)
             
             if self.condition >=5:
-                  condition_description ="A"
+                  return "A"
             elif self.condition >=4:
-                  condition_description ="B"
+                  return "B"
             elif self.condition >=3: 
-                  condition_description ="C"
+                  return "C"
             elif self.condition >=2:
-                  condition_description ="D"
+                  return "D"
             elif self.condition >=1:
-                  condition_description ="E"
+                  return "E"
             else:
-                  condition_description ="F"
+                  return "F"
+            
 
-            return condition_description
-
-
-     
-
+            
 
 

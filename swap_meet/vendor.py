@@ -1,7 +1,7 @@
 #wave1 first two tests
 class Vendor:
-      def __init__(self, inventory=None):
-            if inventory ==None:
+      def __init__(self, inventory = None):
+            if inventory is None:
                   self.inventory =[]
             else:
                   self.inventory = inventory
@@ -19,54 +19,52 @@ class Vendor:
       def get_by_category(self,category=""):
             new_list =[]
             for each_item in self.inventory:
-                  if  each_item.category == category:
+                  if each_item.category == category:
                         new_list.append(each_item)
                   
             return new_list
       #wave3 last 4 test
-      def swap_items(self, friend_list, item_1, item_2):
-            if item_1 in self.inventory and item_2 in friend_list.inventory:
-                  self.inventory.remove(item_1)
-                  friend_list.inventory.append(item_1)
-                  friend_list.inventory.remove(item_2)
-                  self.inventory.append(item_2)
+      def swap_items(self, vendor, my_item, their_item):
+
+            if my_item in self.inventory and their_item in vendor.inventory:
+                  vendor.add(self.remove(my_item))
+                  self.add(vendor.remove(their_item))
                   return True
+
             return False
       #wave4
-      def swap_first_item(self,friend_list):
+      def swap_first_item(self,vendor):
             
-            if len(self.inventory)> 0 and len(friend_list.inventory) > 0:
-                  item_1=self.inventory[0]
-                  item_2=friend_list.inventory[0]
-                  self.inventory.remove(item_1)
-                  self.inventory.insert(0,item_2)
-                  friend_list.inventory.remove(item_2)
-                  friend_list.inventory.insert(0,item_1)
-                  return True
+            if len(self.inventory)> 0 and len(vendor.inventory) > 0:
+                  my_item=self.inventory[0]
+                  vendor_item=vendor.inventory[0]
+                  # self.inventory[0]=vendor_item
+                  # vendor.inventory[0] = my_item
+                  # return True
+                  return self.swap_items(vendor, my_item, vendor_item)
+
             return False      
-      
+      #wave6 first three tests
       def get_best_by_category(self,best_category):
             items_in_category = self.get_by_category(best_category)
             if len(items_in_category)==0:
                   return None
-            max_value = 0
-            most_condition_item =""
+            max_value = float("-inf") 
+            best_condition_item =""
             for item in items_in_category:
                   if item.condition> max_value:
                         max_value=item.condition
-                        most_condition_item=item
-            return most_condition_item
+                        best_condition_item=item
+            return best_condition_item
                   
-
+      #wave6 last three tests
       def swap_best_by_category(self,other,my_priority,their_priority):
-            tai_list_by_category =self.get_by_category(their_priority)
-            jess_list_by_category = other.get_by_category(my_priority)
+            
+            my_list_by_category = self.get_best_by_category(their_priority)
+            their_list_by_category = other.get_best_by_category(my_priority)
 
-            if len(tai_list_by_category)!=0 and len(jess_list_by_category)!=0:
-                  tai_item_to_swap=self.get_best_by_category(their_priority)
-                  jess_item_to_swap = other.get_best_by_category(my_priority)
-                  self.swap_items(other,tai_item_to_swap,jess_item_to_swap)
-                  return True
+            if my_list_by_category and their_list_by_category:
+                  return self.swap_items(other,my_list_by_category,their_list_by_category)
 
             return False
                   
