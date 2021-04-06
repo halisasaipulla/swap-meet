@@ -49,7 +49,7 @@ def test_newest_by_category_with_duplicates():
     assert newest_item.age == pytest.approx(2.0)
 
 
-def test_swap_by_newest_item_3():
+def test_swap_by_newest_item():
     item_a = Clothing(age=2.0)
     item_b = Electronics(age=7.0)
     item_c = Decor(age=4.0)
@@ -79,7 +79,7 @@ def test_swap_by_newest_item_3():
     assert item_f in jesse.inventory
 
 
-def test_swap_by_newest_item_2():
+def test_swap_by_newest_item_if_my_inventory_empty():
     tai = Vendor(
         inventory=[]
     )
@@ -105,7 +105,7 @@ def test_swap_by_newest_item_2():
     assert item_c in jesse.inventory
 
 
-def test_swap_by_newest_item():
+def test_swap_by_newest_item_if_their_inventory_empty():
     item_a = Clothing(age=2.0)
     item_b = Decor(age=4.0)
     item_c = Clothing(age=4.0)
